@@ -6,7 +6,10 @@ use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 use serde::{Serialize, Deserialize};
 
-use components::index::*;
+use components::{
+    index::*,
+    tsparticles::{Stars, *},
+};
 
 #[derive(Routable, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub enum Route {
@@ -18,7 +21,10 @@ pub enum Route {
     Cat {},
     #[route("/stars")]
     Stars {},
-	//  if the current location doesn't match any of the above routes, render the NotFound component
+    #[route("/projects")]
+    Projects {},
+    #[route("/wip")]
+    Wip {},
 	#[route("/:..route")]
     NotFound { route: Vec<String> },
 }
@@ -26,22 +32,18 @@ pub enum Route {
 fn Home(cx: Scope) -> Element {
     cx.render(rsx! {
         div {
-            div {
-                display: "flex",
-                justify_content: "center",
-                align_items: "center",
-    
-                position: "absolute",
-                top: "0",
-                left: "0",
-    
-                height: "100%",
-                width: "100%",
-    
-                background_color: "#181825",
-                Index {
-                    
-                }
+            display: "flex",
+            justify_content: "center",
+            align_items: "center",
+
+            position: "absolute",
+            top: "0",
+            left: "0",
+            height: "100%",
+            width: "100%",
+
+            Index {
+                
             }
         }
     })
@@ -50,7 +52,70 @@ fn Home(cx: Scope) -> Element {
 fn About(cx: Scope) -> Element {
     cx.render(rsx! {
         div {
-            "About"
+            div {
+                display: "flex",
+                justify_content: "center",
+                align_items: "center",
+
+                position: "absolute",
+                top: "0",
+                left: "0",
+                height: "100%",
+                width: "100%",
+
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+
+                    position: "absolute",
+                    top: "5%",
+                    left: "30%",
+                    height: "90%",
+                    width: "40%",
+
+                    background_color: "#181825",
+                    border: "4px solid #585b70",
+                    border_radius: "10px",
+                    font_family: "IBM Plex Mono",
+                    font_size: "14px",
+
+                    div {
+                        display: "flex",
+                        flex_direction: "column",
+                        position: "relative",
+                        width: "100%",
+                        align_items: "center",
+
+                        h1{ "Julia Keadey" }
+                        h2{ "[Sylkos]" }
+                    }
+
+                    div {
+                        align_items: "left",
+                        padding: "10px",
+
+                        h3 {"Links:"}
+                        "Github ~> [LINK]" br{}
+                        "Discord ~> [LINK]" br{}
+                        "Email ~> [LINK]" br{}
+                    }
+
+                    div {
+                        align_items: "left",
+                        padding: "10px",
+
+                        h3 {"About:"}
+                        "I'm a 20 year old student currently studying Computer Science and Computer Engineering at Northeastern University." br{}
+
+                        // h3 {"Interests:"}
+
+                        // h3 {"Contact:"}
+
+
+                    
+                    }
+                }
+            }
         }
     })
 }
@@ -72,10 +137,27 @@ fn Cat(cx: Scope) -> Element {
             flex_direction: "column",
             white_space: "pre-wrap",
             h1 {
-            "       |\\__/,|   (`\\" br {}
+            "      |\\__/,|   (`\\" br {}
             "    _.|o o  |_   ) )  " br {}
             "    -(((---(((-------- \n" br {}
             }
+        }
+    })
+}
+
+fn Projects(cx: Scope) -> Element {
+    cx.render(rsx! {
+        div {
+            "Projects"
+        }
+    })
+}
+
+fn Wip(cx: Scope) -> Element {
+    cx.render(rsx! {
+        div {
+            padding: "10px",
+            h1 { "This page is under construction... come back later!" }
         }
     })
 }
@@ -95,28 +177,3 @@ fn Cat(cx: Scope) -> Element {
 //         }
 //     }
 // }
-
-fn Stars(cx: Scope) -> Element {
-
-    // Use eval returns a function that can spawn eval instances
-   // let create_eval = use_eval(cx);
-
-    let element = cx.render(rsx! {
-        div {
-            id: "tsparticles",
-            position: "absolute",
-            top: "0",
-            left: "0",
-            height: "100%",
-            width: "100%",
-        }
-
-        script {
-            src: "tsparticles.engine.min.js"
-        }
-    });
-
-    // stars::particles();
-
-    element
-}

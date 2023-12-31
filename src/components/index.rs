@@ -18,6 +18,7 @@ pub fn Index(cx: Scope) -> Element {
 
             height: "25%",
             width: "25%",
+            color: "#181825",
             "Julia Keadey    [sylkos]"
             Entry {
                 entry: EntryObj {
@@ -33,8 +34,14 @@ pub fn Index(cx: Scope) -> Element {
             }
             Entry {
                 entry: EntryObj {
-                    to: Route::Stars {},
+                    to: Route::Wip {},
                     text: "Stars.".to_string(),
+                }
+            }
+            Entry {
+                entry: EntryObj {
+                    to: Route::Wip {},
+                    text: "Projects!".to_string(),
                 }
             }
         }
