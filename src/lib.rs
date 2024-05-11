@@ -25,12 +25,15 @@ pub enum Route {
     Projects {},
     #[route("/wip")]
     Wip {},
+    #[route("/celeste")]
+    Celeste {},
 	#[route("/:..route")]
     NotFound { route: Vec<String> },
 }
 
 fn Home(cx: Scope) -> Element {
     cx.render(rsx! {
+        link { rel: "stylesheet", href: "../dist/output.css" }
         div {
             display: "flex",
             justify_content: "center",
@@ -158,6 +161,14 @@ fn Wip(cx: Scope) -> Element {
         div {
             padding: "10px",
             h1 { "This page is under construction... come back later!" }
+        }
+    })
+}
+
+fn Celeste(cx: Scope) -> Element {
+    cx.render(rsx! {
+        div {
+            "add the art thingy here :P"
         }
     })
 }

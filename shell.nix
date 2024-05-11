@@ -7,7 +7,7 @@
       rustup
       pkg-config
 	  openssl
-      nodejs_21
+      #nodejs_21
     ];
     RUSTC_VERSION = "stable";
     # https://github.com/rust-lang/rust-bindgen#environment-variables
