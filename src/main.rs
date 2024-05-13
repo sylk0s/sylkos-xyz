@@ -13,9 +13,6 @@ fn main() {
 
 pub fn App(cx: Scope) -> Element {
     cx.render(rsx! {
-        div {
-            class: "mocha",
             Router::<Route> {}
-        }
     })
 }

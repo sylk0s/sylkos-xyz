@@ -1,12 +1,13 @@
 #![allow(non_snake_case)]
 
 pub mod pages;
+pub mod components;
 
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 use serde::{Serialize, Deserialize};
 
-use pages::{home::*, about::*, *};
+use pages::{home::*, about::*, blog::*, testing::*, *};
 
 #[derive(Routable, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub enum Route {
@@ -22,6 +23,10 @@ pub enum Route {
     Wip {},
     #[route("/celeste")]
     Celeste {},
+    #[route("/blog")]
+    Blog {},
+    #[route("/testing")]
+    Testing {},
 	#[route("/:..route")]
     NotFound { route: Vec<String> },
 }

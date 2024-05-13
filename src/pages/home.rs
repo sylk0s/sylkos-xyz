@@ -3,9 +3,51 @@ use dioxus_router::prelude::*;
 use crate::*;
 use serde::{Serialize, Deserialize};
 
+const SCRIPT_CONTENT: &str = r#"tsParticles.load({
+    id: "tsparticles",
+    options: {
+        background: {
+            color: 'rgb(26,27,28)',
+        },
+        particles: {
+            number: {
+                value: 350,
+            },
+            move: {
+                direction: 0,
+                enable: true,
+                outModes: {
+                default: 0,
+                },
+                random: true,
+                speed: 0.1,
+                straight: true,
+            },
+            opacity: {
+                animation: {
+                enable: true,
+                speed: 1,
+                sync: false,
+                },
+                value: { min: 0, max: 1 },
+            },
+            size: {
+                value: { min: 1, max: 3 },
+            },
+        },
+        preset: "stars",
+    },
+});"#;
+
 pub fn Home(cx: Scope) -> Element {
     cx.render(rsx! {
-        link { rel: "stylesheet", href: "../dist/output.css" }
+        div {
+            id: "tsparticles",
+            script {
+                SCRIPT_CONTENT
+            }
+        }
+
         div {
             display: "flex",
             justify_content: "center",
@@ -18,7 +60,7 @@ pub fn Home(cx: Scope) -> Element {
             width: "100%",
 
             Index {
-                
+            
             }
         }
     })
@@ -27,20 +69,11 @@ pub fn Home(cx: Scope) -> Element {
 pub fn Index(cx: Scope) -> Element {
     cx.render(rsx! {
         div {
-            display: "flex",
-            flex_direction: "column",
-            vertical_align: "middle",
+            class: "flex flex-col justify-center items-center bg-rosewater bg-opacity-20 rounded-lg p-1",
 
-            background_color: "#f5c2e7",
-            border: "4px solid #585b70",    
-            border_radius: "10px",
-            padding: "10px",
-
-            height: "25%",
-            width: "25%",
-            color: "#181825",
             hr {}
             h1 {
+                class: "text-4xl text-center text-rosewater p-4",
             "Julia Keadey    [sylkos]"
             }
             hr {}
@@ -83,9 +116,10 @@ pub struct EntryObj {
 fn Entry(cx: Scope, entry: EntryObj) -> Element {
     cx.render(rsx! {
         div {
+            class: "flex text-lavender p-2 text-4md hover:text-rosewater cursor-pointer",
             Link {
                 to: entry.to.clone(),
-                entry.text.clone()
+                format!("~ {}", entry.text.clone())
             }
         }
     })

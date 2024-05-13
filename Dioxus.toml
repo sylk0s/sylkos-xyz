@@ -33,10 +33,10 @@ index_on_404 = true
 [web.resource]
 
 # CSS style file
-style = ["/tailwind.css"]
+style = ["/tailwind.css", "/atom-one-dark.css"]
 
 # Javascript code file
-script = []
+script = ["highlight.min.js", "tsparticles.stars.js"]
 
 [web.resource.dev]
 
