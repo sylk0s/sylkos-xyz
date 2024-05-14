@@ -35,12 +35,12 @@
         
       - name: Setup TailwindCSS Cli
         run: npm -g install tailwindcss
+
+      - name: Install Catppuccin Node Module
+        run: npm install -D @catppuccin/tailwindcss
         
       - name: Run TailwindCSS Compiler
         run: npx tailwind -c tailwind.config.js -o src/index.css --minify
-        
-      - name: Install Catppuccin Node Module
-        run: npm install -D @catppuccin/tailwindcss
 
       - name: Run Dioxus
         run: dx build --release
