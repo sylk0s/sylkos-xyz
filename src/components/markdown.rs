@@ -30,10 +30,12 @@ pub fn Markdown(cx: Scope<MarkdownProps>) -> Element {
         .replace(
             "<h1>",
             "<h1 class=\"text-4xl font-bold mb-2 text-text\">",
-        ).replace(
-            "</h1>",
-            "</h1> <hr class=\"text-text\"></hr>",
-        ).replace(
+        )
+        // .replace(
+        //     "</h1>",
+        //     "</h1> <hr class=\"text-text\"></hr>",
+        // )
+        .replace(
             "<h2>",
             "<h2 class=\"text-3xl font-bold mb-2 text-text\">",
         ).replace(
