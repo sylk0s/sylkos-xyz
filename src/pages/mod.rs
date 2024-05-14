@@ -4,6 +4,7 @@ pub mod blog;
 pub mod testing;
 
 use dioxus::prelude::*;
+use crate::components::stars::Stars;
 
 #[component]
 pub fn NotFound(cx: Scope, route: Vec<String>) -> Element {
@@ -17,14 +18,19 @@ pub fn NotFound(cx: Scope, route: Vec<String>) -> Element {
 
 pub fn Cat(cx: Scope) -> Element {
     cx.render(rsx! {
+        Stars {
+
+        }
         div {
-            display: "flex",
-            flex_direction: "column",
-            white_space: "pre-wrap",
-            h1 {
-            "      |\\__/,|   (`\\" br {}
-            "    _.|o o  |_   ) )  " br {}
-            "    -(((---(((-------- \n" br {}
+            class: "absolute flex h-screen w-screen justify-center items-center",
+            div {
+                class: "flex flex-col p-10 bg-crust text-text text-4xl rounded-lg justify-center items-center", 
+                white_space: "pre-wrap",
+                h1 {
+                "       |\\__/,|   (`\\" br {}
+                "    _.|o o  |_   ) )  " br {}
+                "    -(((---(((-------- \n" br {}
+                }
             }
         }
     })
