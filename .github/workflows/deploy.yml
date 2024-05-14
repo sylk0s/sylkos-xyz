@@ -1,62 +1,54 @@
-  on:
-    workflow_dispatch:
-    push:
-      branches:
-        - "main"
-  
-  permissions:
-    contents: read
-    pages: write
-    id-token: write
-  
-  jobs:
-    deploy:
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Setup Rust Toolchain
-        uses: actions-rs/toolchain@v1
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
         with:
+          profile: minimal
           toolchain: stable
+          override: true
           target: wasm32-unknown-unknown
-    
-      - name: Fix WASM :(
-        run: cargo update -p wasm-bindgen --precise 0.2.92
-          
-      - name: Rust Cache
-        uses: Swatinem/rust-cache@v2.2.1
+      - uses: cargo-bins/cargo-binstall@main
+      - uses: Swatinem/rust-cache@v2.2.1
         with:
           cache-on-failure: true
-        
-      - name: Setup Dioxus Cli
-        run: cargo install dioxus-cli
-        
+
+      - name: Setup Node
+        uses: actions/setup-node@v3.8.1
+
       - name: Setup TailwindCSS Cli
         run: npm -g install tailwindcss
 
       - name: Install Catppuccin Node Module
         run: npm install -D @catppuccin/tailwindcss
-        
+
+      - name: Install Dioxus CLI
+        run: cargo binstall --no-confirm dioxus-cli --force
+
       - name: Run TailwindCSS Compiler
         run: npx tailwind -c tailwind.config.js -o src/index.css --minify
 
       - name: Run Dioxus
         run: dx build --release
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
 
-      - name: Upload
-        uses: actions/upload-pages-artifact@v3
-        with: 
-          path: dist
-  
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-  
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.3
+        with:
+          branch: main
+          folder: dist
+          target-folder: .

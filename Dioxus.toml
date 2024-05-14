@@ -18,7 +18,7 @@ asset_dir = "public"
 # HTML title tag content
 title = "Hello World!"
 
-base_path = "./"
+#base_path = "/"
 
 [web.watcher]
 
