@@ -51,13 +51,24 @@ jobs:
       - name: Run Dioxus
         run: dx build --release
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload
+        uses: actions/upload-pages-artifact@v1.0.4
+        with: 
+          path: dist
+
+      - id: deploy
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
         with:
-          # Upload entire repository
-          path: './dist'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          token: ${{ github.token }}
+
+    #   - name: Setup Pages
+    #     uses: actions/configure-pages@v5
+    #   - name: Upload artifact
+    #     uses: actions/upload-pages-artifact@v3
+    #     with:
+    #       # Upload entire repository
+    #       path: './dist'
+    #   - name: Deploy to GitHub Pages
+    #     id: deployment
+    #     uses: actions/deploy-pages@v4
