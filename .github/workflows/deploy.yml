@@ -28,6 +28,9 @@ jobs:
         with:
           cache-on-failure: true
 
+      - name: Fix WASM
+        run: cargo update -p wasm-bindgen --precise 0.2.92
+
       - name: Setup Node
         uses: actions/setup-node@v3.8.1
 
