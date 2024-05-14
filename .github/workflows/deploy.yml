@@ -13,17 +13,20 @@
     deploy:
       environment:
         name: github-pages
-        url: ${{ steps.build-publish.outputs.page_url }}
+        url: ${{ steps.deployment.outputs.page_url }}
       runs-on: ubuntu-latest
       steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup Rust Toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
+    
+      - name: Fix WASM :(
+        run: cargo update -p wasm-bindgen --precise 0.2.92
           
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2.2.1
@@ -42,20 +45,18 @@
       - name: Run TailwindCSS Compiler
         run: npx tailwind -c tailwind.config.js -o src/index.css --minify
 
-      - name: Fix WASM :(
-        run: cargo update -p wasm-bindgen --precise 0.2.92; cargo install -f wasm-bindgen-cli --version 0.2.89
-
       - name: Run Dioxus
         run: dx build --release
         
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Upload
-        uses: actions/upload-pages-artifact@v1.0.4
+        uses: actions/upload-pages-artifact@v3
         with: 
           path: dist
   
-      - id: deploy
-        name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
-        with:
-          token: ${{ github.token }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
   
