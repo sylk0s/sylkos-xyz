@@ -4,7 +4,7 @@ const SCRIPT_CONTENT: &str = r#"tsParticles.load({
     id: "tsparticles",
     options: {
         background: {
-            color: 'rgb(30, 30, 46)',
+            color: 'rgb(17, 17, 27)',
         },
         particles: {
             number: {

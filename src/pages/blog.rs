@@ -1,7 +1,11 @@
 use dioxus::prelude::*;
 use crate::Route;
 use dioxus_router::prelude::*;
-use crate::components::stars::Stars;
+use crate::components::{
+    stars::Stars, 
+    document::Document,
+    markdown::Markdown,
+};
 
 
 #[derive(Clone, PartialEq, Debug, Copy)]
@@ -29,27 +33,25 @@ const ENTRIES: [EntryObj; 3] = [
         title: "Entry Title",
         date: "01/01/1970",
         description: "some filler text...",
-        content: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: include_str!("../../blog.md")
     },
     EntryObj {
         id: 1,
         title: "AAA",
         date: "01/01/1971",
         description: "some filler text...",
-        content: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: include_str!("../../blog.md")
     },
     EntryObj {
         id: 2,
         title: "ZZZ",
         date: "01/01/1972",
         description: "some filler text...",
-        content: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        content: include_str!("../../blog.md")
     }
 ];
 
 pub fn Blog<'a>(cx: Scope) -> Element {
-
-
     cx.render(rsx! {
         Stars {}
         div { // background of everything
@@ -58,7 +60,7 @@ pub fn Blog<'a>(cx: Scope) -> Element {
                     class: "container mx-auto max-w-4xl",
 
                 h1 {
-                    class: "text-4xl text-left text-rosewater bg-base p-4",
+                    class: "text-4xl text-left text-rosewater p-4",
                     "Blog"
                 }
 
@@ -74,25 +76,17 @@ pub fn Blog<'a>(cx: Scope) -> Element {
                 hr {}
             }
         }
-
-        div {
-            class: "absolute p-4 text-text text-lg",
-            Link {
-                to: Route::Home {},
-                "<- Return to Home"
-            }
-        }
     })
 }
 
 fn Entry(cx: Scope<EntryProps>) -> Element {
     cx.render(rsx! {
         Link {
-            to: Route::Testing {},
+            to: Route::BlogPost { id: cx.props.entry.id },
             div {
                 class: "flex p-2",
                 div {
-                    class: "container bg-crust rounded-lg",
+                    class: "container bg-base rounded-lg",
 
                     div {
                         class: "flex flex-col p-2",
@@ -112,6 +106,42 @@ fn Entry(cx: Scope<EntryProps>) -> Element {
                         cx.props.entry.description
                     }
                 }
+            }
+        }
+    })
+}
+
+#[derive(Props, Clone, PartialEq, Debug, Copy)]
+pub struct PostProps {
+    id: u32,
+}
+
+pub fn BlogPost(cx: Scope<PostProps>) -> Element {
+    let entry = ENTRIES.iter().find(|e| e.id == cx.props.id).unwrap();
+
+    cx.render(rsx!{
+        Document {
+            script {
+                "hljs.highlightAll();"
+            }
+
+            div {
+                class: "flex flex-col p-2",
+                h2 {
+                    class: "text-3xl text-left text-rosewater p-1",
+                    entry.title
+                }
+
+                p {
+                    class: "text-left text-overlay0 ",
+                    entry.date
+                }
+
+                hr {}
+            }
+
+            Markdown {
+                content: entry.content
             }
         }
     })

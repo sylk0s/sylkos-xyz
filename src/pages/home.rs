@@ -22,7 +22,7 @@ pub fn Home(cx: Scope) -> Element {
 pub fn Index(cx: Scope) -> Element {
     cx.render(rsx! {
         div {
-            class: "flex flex-col justify-center items-center bg-rosewater bg-opacity-20 rounded-lg p-1 max-w-md",
+            class: "flex flex-col justify-center items-center bg-base rounded-lg p-1 max-w-md borders border-rosewater border-2",
 
             h1 {
                 class: "text-4xl text-center text-rosewater p-4",
@@ -33,18 +33,6 @@ pub fn Index(cx: Scope) -> Element {
                 entry: EntryObj {
                     to: Route::About {},
                     text: "About me!".to_string(),
-                }
-            }
-            Entry {
-                entry: EntryObj {
-                    to: Route::Cat {},
-                    text: "Cats.".to_string(),
-                }
-            }
-            Entry {
-                entry: EntryObj {
-                    to: Route::Wip {},
-                    text: "Projects!".to_string(),
                 }
             }
             Entry {
