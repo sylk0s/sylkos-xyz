@@ -1,9 +1,12 @@
 pub mod home;
-pub mod about;
 pub mod blog;
 
 use dioxus::prelude::*;
-use crate::components::stars::Stars;
+use crate::components::{
+    stars::Stars,
+    document::Document,
+    markdown::Markdown,
+};
 
 #[component]
 pub fn Cat(cx: Scope, route: Vec<String>) -> Element {
@@ -27,6 +30,26 @@ pub fn Cat(cx: Scope, route: Vec<String>) -> Element {
                 "_.|o o  |_   ) )" br {}
                 "-(((---(((-------"
                 }
+            }
+        }
+    })
+}
+
+pub fn About(cx: Scope) -> Element {
+    cx.render(rsx! {
+        Document {
+            Markdown {
+                content: include_str!("../../public/pages/about.md")
+            }
+        }
+    })
+}
+
+pub fn Contact(cx: Scope) -> Element {
+    cx.render(rsx! {
+        Document {
+            Markdown {
+                content: include_str!("../../public/pages/contact.md")
             }
         }
     })
