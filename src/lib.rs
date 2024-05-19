@@ -17,7 +17,7 @@ pub enum Route {
 
 	#[route("/about")]
 	About {},
-    // #[route("/projects")]
+    //#[route("/projects")]
     // Tmp {},
     #[route("/blog")]
     Blog {},

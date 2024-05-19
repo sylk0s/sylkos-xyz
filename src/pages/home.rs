@@ -8,6 +8,9 @@ use crate::{
     },
 };
 use serde::{Serialize, Deserialize};
+use dioxus_router::components::IntoRoutable;
+
+
 pub fn Home(cx: Scope) -> Element {
     cx.render(rsx! {
         Stars {
@@ -23,8 +26,6 @@ pub fn Home(cx: Scope) -> Element {
         }
     })
 }
-
-static JULIA_PATH: &str = "julia.png";
 
 pub fn Index(cx: Scope) -> Element {
     cx.render(rsx! {
@@ -82,20 +83,20 @@ pub fn ButtonGrid(cx: Scope) -> Element {
                 class: "container mx-auto flex flex-col justify-center",
                 Entry {
                     entry: EntryObj {
-                        to: Route::About {},
+                        to: Routable::FromRoute(Route::About {}),
                         text: "About".to_string(),
                     }
                 }
                 Entry {
                     entry: EntryObj {
-                        to: Route::Blog {},
+                        to: Routable::FromRoute(Route::Blog {}),
                         text: "Blog".to_string(),
                     }
                 
                 }
                 Entry {
                     entry: EntryObj {
-                        to: Route::Tmp {},
+                        to: Routable::FromStr("https://github.com/sylk0s".to_string()),
                         text: "Projects".to_string(),
                     }
                 
@@ -105,20 +106,20 @@ pub fn ButtonGrid(cx: Scope) -> Element {
                 class: "container mx-auto flex flex-col justify-center",
                 Entry {
                     entry: EntryObj {
-                        to: Route::Contact {},
+                        to: Routable::FromRoute(Route::Contact {}),
                         text: "Contact".to_string(),
                     }
                 }
                 Entry {
                     entry: EntryObj {
-                        to: Route::Tmp {},
+                        to: Routable::FromRoute(Route::Tmp {}),
                         text: "Resume".to_string(),
                     }
                 
                 }
                 Entry {
                     entry: EntryObj {
-                        to: Route::Tmp {},
+                        to: Routable::FromRoute(Route::Tmp {}),
                         text: "Links".to_string(),
                     }
                 
@@ -128,9 +129,24 @@ pub fn ButtonGrid(cx: Scope) -> Element {
     })
 }
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+// I have to do this thing because for some reason god (rustc) really doesn't
+// want me to use ImplIter bc apparently it's not partialeq or something
+#[derive(Debug, PartialEq, Serialize, Deserialize, Clone)]
+enum Routable {
+    FromStr(String),
+    FromRoute(Route),
+}
+
+fn from_routable(routable: Routable) -> IntoRoutable {
+    match routable {
+        Routable::FromStr(a) => IntoRoutable::FromStr(a),
+        Routable::FromRoute(a) => a.into(),
+    }
+}
+
+#[derive(Props, Deserialize, Serialize, Clone, Debug, PartialEq)]
 pub struct EntryObj {
-    to: Route,
+    to: Routable,
     #[serde(default)]
     text: String,
 }
@@ -139,7 +155,7 @@ pub struct EntryObj {
 fn Entry(cx: Scope, entry: EntryObj) -> Element {
     cx.render(rsx! {
         Link {
-            to: entry.to.clone(),
+            to: from_routable(entry.to.clone()),
             div {
                 class: "p-2",
                 div {

@@ -86,7 +86,7 @@ fn Entry(cx: Scope<EntryProps>) -> Element {
             div {
                 class: "flex p-2",
                 div {
-                    class: "container bg-base rounded-lg",
+                    class: "container bg-base rounded-lg borders border-rosewater border-2",
 
                     div {
                         class: "flex flex-col p-2",
