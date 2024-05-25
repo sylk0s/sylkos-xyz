@@ -9,7 +9,6 @@ edition = "2021"
 dioxus = { version = "0.5", features = ["web", "router"] }
 tracing = "0.1.40"
 dioxus-logger = "0.5.0"
-manganis = "0.2.2"
 pulldown-cmark = "0.10.3"
 serde = { version = "1.0.193", features = ["derive"] }
 serde-wasm-bindgen = "0.6.3"
