@@ -59,9 +59,9 @@ impl Iterator for TransIter {
 // }
 
 #[component]
-pub fn TransText(cx: Scope, text: String) -> Element {
+pub fn TransText(text: String) -> Element {
     let mut color = TransIter::new();
-    cx.render(rsx! {
+    rsx! {
         div {
             class: "flex flex-row justify-center", // TODO: Fix this thing
             for chr in text.chars() {
@@ -77,5 +77,5 @@ pub fn TransText(cx: Scope, text: String) -> Element {
                 }
             }
         }
-    })
+    }
 }

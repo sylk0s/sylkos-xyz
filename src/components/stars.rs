@@ -36,13 +36,13 @@ const SCRIPT_CONTENT: &str = r#"tsParticles.load({
     },
 });"#;
 
-pub fn Stars(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn Stars() -> Element {
+    rsx! {
         div {
             id: "tsparticles",
             script {
-                SCRIPT_CONTENT
+                {SCRIPT_CONTENT}
             }
         }
-    })
+    }
 }

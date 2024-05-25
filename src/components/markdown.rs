@@ -1,19 +1,15 @@
 use dioxus::prelude::*;
 use pulldown_cmark::{html, Options, Parser};
 
-#[derive(Props, Clone, PartialEq, Debug, Copy)]
-pub struct MarkdownProps {
-    pub content: &'static str,
-}
-
 #[allow(non_snake_case)]
-pub fn Markdown(cx: Scope<MarkdownProps>) -> Element {
+#[component]
+pub fn Markdown(content: String) -> Element {
     let mut options = Options::empty();
     options.insert(Options::ENABLE_STRIKETHROUGH);
     options.insert(Options::ENABLE_TABLES);
     options.insert(Options::ENABLE_FOOTNOTES);
     options.insert(Options::ENABLE_TASKLISTS);
-    let parser = Parser::new_ext(cx.props.content, options);
+    let parser = Parser::new_ext(content.as_ref(), options);
     let mut html_output = String::new();
     html::push_html(&mut html_output, parser);
 
@@ -71,10 +67,14 @@ pub fn Markdown(cx: Scope<MarkdownProps>) -> Element {
     let html_output =
         html_output.replace("<a ", "<a class=\"text-blue\" ");
 
-    cx.render(rsx! {
+    rsx! {
+        script {
+            "hljs.highlightAll();"
+        }
+        
         div {
             class: "p-4",
             dangerous_inner_html: "{html_output}"
         }
-    })
+    }
 }

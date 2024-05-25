@@ -1,4 +1,5 @@
 use dioxus::prelude::*;
+use serde::{Deserialize, Serialize};
 use crate::Route;
 use dioxus_router::prelude::*;
 use crate::components::{
@@ -6,7 +7,58 @@ use crate::components::{
     document::Document,
     markdown::Markdown,
 };
+use chrono::prelude::*;
+use std::{
+    fs,
+    path::Path,
+};
+use lazy_static::lazy_static;
 
+lazy_static! {
+    //static ref SERIES_CONFIGS: Vec<BlogConfig> = read_blog_config();
+    //static ref ENTRIES: Vec<EntryObj> = initialize_blog_entries(SERIES_CONFIG);
+}
+
+#[derive(Serialize, Deserialize)]
+struct BlogConfig {
+    id: u32,
+    title: String,
+    content: Vec<BlogPageConfig>,
+}
+
+#[derive(Serialize, Deserialize)]
+struct BlogPageConfig {
+    id: u32,
+    subname: String,
+    date: DateTime<Local>,
+    description: String,
+    content: String,
+}
+
+// read the blog config from a file
+fn read_blog_config() -> Vec<BlogConfig> {
+    // for each folder in the blog folder
+    let entries = fs::read_dir(Path::new("../../public/blog")).expect("Could not find blog dir");
+    
+    entries.filter_map(|ent| {
+        let entry = ent.expect("unwrapping entry");
+        if entry.metadata().expect("metadata").is_dir() {
+            let mut sub = fs::read_dir(entry.path()).expect("failed to read subfolder");
+            // read the .toml file in the folder
+            if let Some(config_file) = sub.find(|e| e.as_ref().expect("unwrap entry").file_name() == "blog.toml") {
+                let config_str = fs::read_to_string(config_file.expect("unwrapping config file entry").path()).expect("Failed to read toml");
+                let config: BlogConfig = toml::from_str(&config_str).expect("Failed to parse toml");
+                return Some(config);
+            }
+        }
+        None
+    }).collect()
+}
+
+fn initialize_blog_entries(configs: Vec<BlogConfig>) -> Vec<EntryObj> {
+    // for page_config
+    unimplemented!();
+}
 
 #[derive(Clone, PartialEq, Debug, Copy)]
 struct EntryObj {
@@ -17,42 +69,32 @@ struct EntryObj {
     content: &'static str,
 }
 
-#[derive(Props, Clone, PartialEq, Debug, Copy)]
-struct BlogProps<'a> {
-    entries: &'a Vec<EntryObj>,
-}
-
-#[derive(Props, Clone, PartialEq, Debug, Copy)]
-struct EntryProps {
-    entry: EntryObj,
-}
-
 const ENTRIES: [EntryObj; 3] = [
     EntryObj {
         id: 0,
-        title: "Entry Title",
-        date: "01/01/1970",
-        description: "some filler text...",
-        content: include_str!("../../blog.md")
+        title: "First Post",
+        date: "2021-09-01",
+        description: "This is the first post",
+        content: "This is the first post",
     },
     EntryObj {
         id: 1,
-        title: "AAA",
-        date: "01/01/1971",
-        description: "some filler text...",
-        content: include_str!("../../blog.md")
+        title: "Second Post",
+        date: "2021-09-02",
+        description: "This is the second post",
+        content: "This is the second post",
     },
     EntryObj {
         id: 2,
-        title: "ZZZ",
-        date: "01/01/1972",
-        description: "some filler text...",
-        content: include_str!("../../blog.md")
-    }
+        title: "Third Post",
+        date: "2021-09-03",
+        description: "This is the third post",
+        content: "This is the third post",
+    },
 ];
 
-pub fn Blog<'a>(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn Blog() -> Element {
+    rsx! {
         Stars {}
         div { // background of everything
             class: "absolute flex h-screen w-screen justify-center",
@@ -76,13 +118,14 @@ pub fn Blog<'a>(cx: Scope) -> Element {
                 hr {}
             }
         }
-    })
+    }
 }
 
-fn Entry(cx: Scope<EntryProps>) -> Element {
-    cx.render(rsx! {
+#[component]
+fn Entry(entry: EntryObj) -> Element {
+    rsx! {
         Link {
-            to: Route::BlogPost { id: cx.props.entry.id },
+            to: Route::BlogPost { id: entry.id },
             div {
                 class: "flex p-2",
                 div {
@@ -92,49 +135,42 @@ fn Entry(cx: Scope<EntryProps>) -> Element {
                         class: "flex flex-col p-2",
                         h2 {
                             class: "text-3xl text-left text-rosewater p-1",
-                            cx.props.entry.title
+                            {entry.title},
                         }
 
                         p {
                             class: "text-left text-overlay0 ",
-                            cx.props.entry.date
+                            {entry.date},
                         }
                     }
 
                     p {
                         class: "text-left text-rosewater p-2",
-                        cx.props.entry.description
+                        {entry.description},
                     }
                 }
             }
         }
-    })
+    }
 }
 
-#[derive(Props, Clone, PartialEq, Debug, Copy)]
-pub struct PostProps {
-    id: u32,
-}
+#[component]
+pub fn BlogPost(id: u32) -> Element {
+    let entry = ENTRIES.iter().find(|e| id == e.id).unwrap();
 
-pub fn BlogPost(cx: Scope<PostProps>) -> Element {
-    let entry = ENTRIES.iter().find(|e| e.id == cx.props.id).unwrap();
-
-    cx.render(rsx!{
+    rsx!{
         Document {
-            script {
-                "hljs.highlightAll();"
-            }
 
             div {
                 class: "flex flex-col p-2",
                 h2 {
                     class: "text-3xl text-left text-rosewater p-1",
-                    entry.title
+                    {entry.title}
                 }
 
                 p {
                     class: "text-left text-overlay0 ",
-                    entry.date
+                    {entry.date}
                 }
 
                 hr {}
@@ -144,5 +180,5 @@ pub fn BlogPost(cx: Scope<PostProps>) -> Element {
                 content: entry.content
             }
         }
-    })
+    }
 }

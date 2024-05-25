@@ -9,9 +9,9 @@ use crate::components::{
 };
 
 #[component]
-pub fn Cat(cx: Scope, route: Vec<String>) -> Element {
+pub fn Cat(route: Vec<String>) -> Element {
     let sroute = route.join("/");
-    cx.render(rsx! {
+    rsx! {
         Stars {
 
         }
@@ -32,25 +32,25 @@ pub fn Cat(cx: Scope, route: Vec<String>) -> Element {
                 }
             }
         }
-    })
+    }
 }
 
-pub fn About(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn About() -> Element {
+    rsx! {
         Document {
             Markdown {
                 content: include_str!("../../public/pages/about.md")
             }
         }
-    })
+    }
 }
 
-pub fn Contact(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn Contact() -> Element {
+    rsx! {
         Document {
             Markdown {
                 content: include_str!("../../public/pages/contact.md")
             }
         }
-    })
+    }
 }

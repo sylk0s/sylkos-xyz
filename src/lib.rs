@@ -8,8 +8,6 @@ use dioxus_router::prelude::*;
 use serde::{Serialize, Deserialize};
 
 use pages::{home::*, blog::*, *};
-use components::document::Document;
-
 #[derive(Routable, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub enum Route {
 	#[route("/")]
@@ -40,8 +38,8 @@ pub enum Route {
     Cat { route: Vec<String> },
 }
 
-pub fn Tmp(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn Tmp() -> Element {
+    rsx! {
         div {
             class: "h-screen w-screen bg-crust",
             h1 {
@@ -49,5 +47,5 @@ pub fn Tmp(cx: Scope) -> Element {
                 "This is a temporary page... the actual page is still under construction :)"
             }
         }
-    })
+    }
 }

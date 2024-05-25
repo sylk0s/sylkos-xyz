@@ -1,18 +1,13 @@
 use dioxus::prelude::*;
-use std::fmt;
 use crate::{
     Route,
-    components::{markdown::Markdown, stars::Stars},
+    components::stars::Stars,
 };
 use dioxus_router::prelude::*;
 
-#[derive(Props, Clone, Debug)]
-pub struct DocumentProps<'a> {
-    children: Element<'a>,
-}
-
-pub fn Document<'a>(cx: Scope<'a, DocumentProps<'a>>) -> Element<'a> {
-    cx.render(rsx! {
+#[component]
+pub fn Document(children: ReadOnlySignal<Element>) -> Element {
+    rsx! {
         Stars {
 
         }
@@ -44,9 +39,9 @@ pub fn Document<'a>(cx: Scope<'a, DocumentProps<'a>>) -> Element<'a> {
         
                         // document content
 
-                        cx.props.children.clone()
+                        { children }
                     }
             }
         }
-    })
+    }
 }

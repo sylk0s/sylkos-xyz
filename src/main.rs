@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use dioxus::{prelude::*, html::GlobalAttributes};
+use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 use sylkos_xyz::Route;
 
@@ -8,11 +8,11 @@ use sylkos_xyz::Route;
 const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
 
 fn main() {
-    dioxus_web::launch(App);
+    launch(App);
 }
 
-pub fn App(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn App() -> Element {
+    rsx! {
             Router::<Route> {}
-    })
+    }
 }

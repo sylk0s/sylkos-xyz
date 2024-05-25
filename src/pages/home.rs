@@ -11,8 +11,8 @@ use serde::{Serialize, Deserialize};
 use dioxus_router::components::IntoRoutable;
 
 
-pub fn Home(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn Home() -> Element {
+    rsx! {
         Stars {
 
         }
@@ -24,11 +24,11 @@ pub fn Home(cx: Scope) -> Element {
             
             }
         }
-    })
+    }
 }
 
-pub fn Index(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn Index() -> Element {
+    rsx! {
         div {
             class: "flex flex-col justify-center bg-base rounded-lg p-1 max-w-lg borders border-rosewater border-2",
 
@@ -72,11 +72,11 @@ pub fn Index(cx: Scope) -> Element {
 
             // then the things with the stuff here
         }
-    })
+    }
 }
 
-pub fn ButtonGrid(cx: Scope) -> Element {
-    cx.render(rsx! {
+pub fn ButtonGrid() -> Element {
+    rsx! {
         div {
             class: "container mx-auto justify-center flex flex-row",
             div {
@@ -126,7 +126,7 @@ pub fn ButtonGrid(cx: Scope) -> Element {
                 }
             }
         }
-    })
+    }
 }
 
 // I have to do this thing because for some reason god (rustc) really doesn't
@@ -152,18 +152,17 @@ pub struct EntryObj {
 }
 
 #[component]
-fn Entry(cx: Scope, entry: EntryObj) -> Element {
-    cx.render(rsx! {
+fn Entry(entry: EntryObj) -> Element {
+    rsx! {
         Link {
             to: from_routable(entry.to.clone()),
             div {
                 class: "p-2",
                 div {
                     class: "flex text-rosewater p-1 text-4md hover:text-lavender cursor-pointer bg-surface0 justify-center borders border-lavender border-2 rounded-lg p-1",
-                    
-                    format!("{}", entry.text.clone())
+                    {format!("{}", entry.text.clone())}
                 }
             }
         }
-    })
+    }
 }
