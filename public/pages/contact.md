@@ -2,7 +2,7 @@
 
 Here are some ways to contact me
 
-## Preffered methods:
+## Preferred methods:
 
 Discord: @sylkos (Best for general purpose, most "public")
 
