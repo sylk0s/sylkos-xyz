@@ -97,27 +97,20 @@ struct Entry {
 // }
 
 // this... is a more boring to solve this, but i can't quite get the blog entries to read in properly on compile time. the wasm seems like it *can't* do this.
-const ENTRIES: [Entry; 3] = [
+const ENTRIES: [Entry; 2] = [
     Entry {
         id: 0,
-        title: "Test",
-        date: "2021-09-01",
-        description: "This is a test",
-        content: "This is a test",
+        title: "I made a website!",
+        date: "2024-06-01",
+        description: "All about this website you're on Right Now!!!",
+        content: include_str!("../../public/blog/website-meta.md"),
     },
     Entry {
         id: 1,
-        title: "Test",
-        date: "2022-09-01",
-        description: "This is a test",
-        content: "This is a test",
-    },
-    Entry {
-        id: 2,
-        title: "Test",
-        date: "2023-09-01",
-        description: "This is a test",
-        content: "This is a test",
+        title: "Why I use NixOS",
+        date: "2024-06-01",
+        description: "TLDR: I's... pretty good?",
+        content: include_str!("../../public/blog/nixos-why.md"),
     },
 ];
 
