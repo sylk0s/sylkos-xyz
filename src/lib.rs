@@ -4,7 +4,6 @@ pub mod pages;
 pub mod components;
 
 use dioxus::prelude::*;
-use dioxus_router::prelude::*;
 use serde::{Serialize, Deserialize};
 
 use pages::{home::*, blog::*, *};

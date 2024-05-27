@@ -4,8 +4,7 @@ use dioxus::prelude::*;
 use crate::Route;
 //use dioxus_router::prelude::*;
 use crate::components::{
-    stars::Stars, 
-    document::Document,
+    stars::Stars,
     markdown::Markdown,
     topbar::TopBar,
 };

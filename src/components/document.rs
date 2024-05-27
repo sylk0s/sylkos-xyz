@@ -4,7 +4,6 @@ use crate::{
     components::stars::Stars,
     components::topbar::TopBar,
 };
-use dioxus_router::prelude::*;
 
 #[component]
 pub fn Document(children: ReadOnlySignal<Element>) -> Element {

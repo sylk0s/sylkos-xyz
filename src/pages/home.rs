@@ -1,10 +1,9 @@
 use dioxus::prelude::*;
-use dioxus_router::prelude::*;
 use crate::{
     *, 
     components::{
         stars::Stars,
-        transtext::{TransText, TransFlagText},
+        transtext::TransFlagText,
     },
 };
 use serde::{Serialize, Deserialize};
