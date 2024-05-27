@@ -1,18 +1,47 @@
 use dioxus::prelude::*;
-// use serde::{Deserialize, Serialize};
-// use toml::{value::Date, Value};
 use crate::Route;
-//use dioxus_router::prelude::*;
 use crate::components::{
     stars::Stars,
     markdown::Markdown,
     topbar::TopBar,
 };
+
+#[derive(Clone, PartialEq, Debug)]
+struct Entry {
+    id: u32,
+    title: &'static str,
+    date: &'static str,
+    description: &'static str,
+    content: &'static str,
+}
+
+// this... is a more boring to solve this, but i can't quite get the blog entries to read in properly on compile time. the wasm seems like it *can't* do this.
+const ENTRIES: [Entry; 2] = [
+    Entry {
+        id: 0,
+        title: "I made a website!",
+        date: "2024-06-01",
+        description: "All about this website you're on Right Now!!!",
+        content: include_str!("../../assets/blog/website-meta.md"),
+    },
+    Entry {
+        id: 1,
+        title: "Why I use NixOS",
+        date: "2024-06-01",
+        description: "TLDR: I's... pretty good?",
+        content: include_str!("../../assets/blog/nixos-why.md"),
+    },
+];
+
+// all of the stuff below is for the auto blog configs... i gave up on that bc it wasn't working well in wasm
+
 // use std::{
 //     fs,
 //     path::Path,
 // };
 // use lazy_static::lazy_static;
+// use serde::{Deserialize, Serialize};
+// use toml::{value::Date, Value};
 
 // static mut ENTRIES: Vec<EntryObj> = Vec::new();
 // static mut BLOG_CONFIG: Vec<BlogConfig> = Vec::new();
@@ -67,15 +96,6 @@ use crate::components::{
 //     }).collect()
 // }
 
-#[derive(Clone, PartialEq, Debug)]
-struct Entry {
-    id: u32,
-    title: &'static str,
-    date: &'static str,
-    description: &'static str,
-    content: &'static str,
-}
-
 // pub fn initialize_blog_entries(configs: Vec<BlogConfig>) -> Vec<EntryObj> {
 //     // for page_config
 //     configs.iter().flat_map(|config| {
@@ -94,24 +114,6 @@ struct Entry {
 //         })
 //     }).collect()
 // }
-
-// this... is a more boring to solve this, but i can't quite get the blog entries to read in properly on compile time. the wasm seems like it *can't* do this.
-const ENTRIES: [Entry; 2] = [
-    Entry {
-        id: 0,
-        title: "I made a website!",
-        date: "2024-06-01",
-        description: "All about this website you're on Right Now!!!",
-        content: include_str!("../../public/blog/website-meta.md"),
-    },
-    Entry {
-        id: 1,
-        title: "Why I use NixOS",
-        date: "2024-06-01",
-        description: "TLDR: I's... pretty good?",
-        content: include_str!("../../public/blog/nixos-why.md"),
-    },
-];
 
 pub fn Blog() -> Element {
     rsx! {
@@ -139,7 +141,7 @@ pub fn Blog() -> Element {
 
                 div {
                     class: "flex flex-col p-4",
-                    for entry in ENTRIES.iter() {
+                    for entry in ENTRIES.iter().rev() {
                         EntryDisp { entry: entry.clone() }
                     }
                 }
@@ -214,7 +216,6 @@ pub fn BlogPost(id: u32) -> Element {
                     class: "flex flex-col bg-base rounded-lg p-2",
 
                     // document content
-
                     div {
                         class: "flex flex-col p-2",
                         h2 {

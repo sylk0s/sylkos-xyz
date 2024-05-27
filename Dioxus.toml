@@ -18,6 +18,7 @@ asset_dir = "public"
 # HTML title tag content
 title = "Sylkos's Website :3"
 
+# I can't tell of this is needed or not so i'm just gonna go with N O
 #base_path = "sylkos-xyz"
 
 [web.watcher]
@@ -35,7 +36,7 @@ index_on_404 = true
 [web.resource]
 
 # CSS style file
-style = ["/tailwind.css", "/atom-one-dark.css"]
+style = ["/tailwind.css", "/catppuccin.css"]
 
 # Javascript code file
 script = ["highlight.min.js", "tsparticles.stars.js"]

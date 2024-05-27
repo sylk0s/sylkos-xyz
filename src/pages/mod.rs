@@ -39,7 +39,7 @@ pub fn About() -> Element {
     rsx! {
         Document {
             Markdown {
-                content: include_str!("../../public/pages/about.md")
+                content: include_str!("../../assets/pages/about.md")
             }
         }
     }
@@ -49,7 +49,7 @@ pub fn Contact() -> Element {
     rsx! {
         Document {
             Markdown {
-                content: include_str!("../../public/pages/contact.md")
+                content: include_str!("../../assets/pages/contact.md")
             }
         }
     }

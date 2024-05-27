@@ -12,16 +12,12 @@ use dioxus_router::components::IntoRoutable;
 
 pub fn Home() -> Element {
     rsx! {
-        Stars {
-
-        }
+        Stars { }
 
         div {
             class: "absolute flex h-screen w-screen justify-center items-center",
 
-            Index {
-            
-            }
+            Index { }
         }
     }
 }
