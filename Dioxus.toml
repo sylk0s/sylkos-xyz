@@ -18,7 +18,7 @@ asset_dir = "public"
 # HTML title tag content
 title = "Sylkos's Website :3"
 
-base_path = "sylkos-xyz"
+#base_path = "sylkos-xyz"
 
 [web.watcher]
 

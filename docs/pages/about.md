@@ -2,7 +2,7 @@
 
 Hey there!
 
-My name is Julia Keadey, but I typically go by the pseudonym `sylkos` (often spelled `sylk0s` if the latter is taken) in most parts of the internet.
+My name is Julia Keadey, but I typically go by the pseudonym `sylkos` (often spelled `sylk0s` if the normal spelling is taken) in most parts of the internet.
 
 ## Education
 

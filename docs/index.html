@@ -13,8 +13,8 @@
 <body>
   <div id="main"></div>
   <script type="module">
-    import init from "/sylkos-xyz/assets/dioxus/sylkos-xyz.js";
-    init("/sylkos-xyz/assets/dioxus/sylkos-xyz_bg.wasm").then(wasm => {
+    import init from "/./assets/dioxus/sylkos-xyz.js";
+    init("/./assets/dioxus/sylkos-xyz_bg.wasm").then(wasm => {
       if (wasm.__wbindgen_start == undefined) {
         wasm.main();
       }
