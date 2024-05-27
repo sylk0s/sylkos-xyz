@@ -15,15 +15,11 @@ pub enum Route {
 
 	#[route("/about")]
 	About {},
-    //#[route("/projects")]
-    // Tmp {},
     #[route("/blog")]
     Blog {},
     #[route("/contact")]
     Contact {},
     // #[route("/links")]
-    // Tmp {},
-    // #[route("/resume")]
     // Tmp {},
 
     #[route("/tmp")]

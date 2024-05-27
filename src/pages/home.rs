@@ -115,7 +115,6 @@ pub fn ButtonGrid() -> Element {
                         to: Routable::FromStr("https://sylkos.xyz/resume.pdf".to_string()),
                         text: "Resume".to_string(),
                     }
-                
                 }
                 Entry {
                     entry: EntryObj {
