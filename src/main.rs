@@ -8,6 +8,7 @@ use sylkos_xyz::Route;
 // const _TAILWIND_URL: &str = manganis::mg!(file("public/tailwind.css"));
 
 fn main() {
+
     launch(App);
 }
 

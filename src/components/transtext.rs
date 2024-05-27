@@ -16,7 +16,7 @@ struct TransIter {
 impl TransIter {
     fn new() -> Self {
         TransIter {
-            color: TransColor::WHITE,
+            color: TransColor::PINK,
         }
     }
 }
@@ -27,9 +27,9 @@ impl Iterator for TransIter {
     fn next(&mut self) -> Option<Self::Item> {
 
         self.color = match self.color {
-            TransColor::BLUE => TransColor::PINK,
-            TransColor::PINK => TransColor::WHITE,
-            TransColor::WHITE => TransColor::BLUE,
+            TransColor::BLUE => TransColor::WHITE,
+            TransColor::PINK => TransColor::BLUE,
+            TransColor::WHITE => TransColor::PINK,
         };
 
         Some(self.color)
@@ -74,6 +74,28 @@ pub fn TransText(text: String) -> Element {
                         }
                     },
                     {chr.to_string()}
+                }
+            }
+        }
+    }
+}
+
+#[component]
+pub fn TransFlagText(text: String) -> Element {
+    let mut color = TransIter::new();
+    rsx! {
+        div {
+            class: "flex flex-row justify-center",
+            for chr in text.split(" ") {
+                div {
+                    class: {match color.next() {
+                            Some(TransColor::BLUE) => "text-blue",
+                            Some(TransColor::PINK) => "text-pink",
+                            Some(TransColor::WHITE) => "text-text",
+                            None => "",
+                        }
+                    },
+                    {format!("{} ", chr.to_string())}
                 }
             }
         }

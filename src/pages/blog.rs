@@ -1,67 +1,75 @@
 use dioxus::prelude::*;
-use serde::{Deserialize, Serialize};
+// use serde::{Deserialize, Serialize};
+// use toml::{value::Date, Value};
 use crate::Route;
-use dioxus_router::prelude::*;
+//use dioxus_router::prelude::*;
 use crate::components::{
     stars::Stars, 
     document::Document,
     markdown::Markdown,
+    topbar::TopBar,
 };
-use chrono::prelude::*;
-use std::{
-    fs,
-    path::Path,
-};
-use lazy_static::lazy_static;
+// use std::{
+//     fs,
+//     path::Path,
+// };
+// use lazy_static::lazy_static;
 
-lazy_static! {
-    //static ref SERIES_CONFIGS: Vec<BlogConfig> = read_blog_config();
-    //static ref ENTRIES: Vec<EntryObj> = initialize_blog_entries(SERIES_CONFIG);
-}
+// static mut ENTRIES: Vec<EntryObj> = Vec::new();
+// static mut BLOG_CONFIG: Vec<BlogConfig> = Vec::new();
 
-#[derive(Serialize, Deserialize)]
-struct BlogConfig {
-    id: u32,
-    title: String,
-    content: Vec<BlogPageConfig>,
-}
+// #[derive(Serialize, Deserialize, Clone)]
+// pub struct BlogConfig {
+//     id: u32,
+//     title: String,
+//     content: Vec<BlogPageConfig>,
+// }
 
-#[derive(Serialize, Deserialize)]
-struct BlogPageConfig {
-    id: u32,
-    subname: String,
-    date: DateTime<Local>,
-    description: String,
-    content: String,
-}
+// #[derive(Serialize, Deserialize, Clone)]
+// struct BlogPageConfig {
+//     id: u32,
+//     subname: String,
+//     date: DateTime<Local>,
+//     description: String,
+//     content: String,
+// }
 
 // read the blog config from a file
-fn read_blog_config() -> Vec<BlogConfig> {
-    // for each folder in the blog folder
-    let entries = fs::read_dir(Path::new("../../public/blog")).expect("Could not find blog dir");
+// pub fn read_blog_config() -> Vec<BlogConfig> {
+//     // for each folder in the blog folder
+//     let entries = fs::read_dir(Path::new("public/blog")).expect("Could not find blog dir");
     
-    entries.filter_map(|ent| {
-        let entry = ent.expect("unwrapping entry");
-        if entry.metadata().expect("metadata").is_dir() {
-            let mut sub = fs::read_dir(entry.path()).expect("failed to read subfolder");
-            // read the .toml file in the folder
-            if let Some(config_file) = sub.find(|e| e.as_ref().expect("unwrap entry").file_name() == "blog.toml") {
-                let config_str = fs::read_to_string(config_file.expect("unwrapping config file entry").path()).expect("Failed to read toml");
-                let config: BlogConfig = toml::from_str(&config_str).expect("Failed to parse toml");
-                return Some(config);
-            }
-        }
-        None
-    }).collect()
-}
+//     entries.filter_map(|ent| {
+//         let entry = ent.expect("unwrapping entry");
+//         if entry.metadata().expect("metadata").is_dir() {
+//             let mut sub = fs::read_dir(entry.path()).expect("failed to read subfolder");
+//             // read the .toml file in the folder
+//             if let Some(config_file) = sub.find(|e| e.as_ref().expect("unwrap entry").file_name() == "blog.toml") {
+//                 let config_str = fs::read_to_string(config_file.expect("unwrapping config file entry").path()).expect("Failed to read toml");
+//                 //let config: BlogConfig = toml::from_str(&config_str).expect("Failed to parse toml");
+//                 let config: Value = toml::from_str(&config_str).expect("Failed to parse toml");
+//                 return Some(BlogConfig {
+//                     id: config["id"].as_integer().expect("Failed to parse id") as u32,
+//                     title: config["title"].as_str().expect("Failed to parse title").to_string(),
+//                     content: config["content"].as_array().expect("Failed to parse content").iter().map(|page| {
+//                         BlogPageConfig {
+//                             id: page["id"].as_integer().expect("Failed to parse id") as u32,
+//                             subname: page["subname"].as_str().expect("Failed to parse subname").to_string(),
+//                             date: chrono::Local::now(), //DateTime::parse_from_str(page["date"].as_str().expect("failed finding date"), "%Y-%m-%d").expect("Failed to parse date").into(),
+//                             description: page["description"].as_str().expect("Failed to parse description").to_string(),
+//                             content: page["content"].as_str().expect("Failed to parse content").to_string(),
+//                         }
+//                     }).collect(),
+//                 });
+//                 // return Some(config);
+//             }
+//         }
+//         None
+//     }).collect()
+// }
 
-fn initialize_blog_entries(configs: Vec<BlogConfig>) -> Vec<EntryObj> {
-    // for page_config
-    unimplemented!();
-}
-
-#[derive(Clone, PartialEq, Debug, Copy)]
-struct EntryObj {
+#[derive(Clone, PartialEq, Debug)]
+struct Entry {
     id: u32,
     title: &'static str,
     date: &'static str,
@@ -69,27 +77,47 @@ struct EntryObj {
     content: &'static str,
 }
 
-const ENTRIES: [EntryObj; 3] = [
-    EntryObj {
+// pub fn initialize_blog_entries(configs: Vec<BlogConfig>) -> Vec<EntryObj> {
+//     // for page_config
+//     configs.iter().flat_map(|config| {
+//         config.content.iter().map(move |page_config| {
+
+//             // read the content in
+//             let content = fs::read_to_string(format!("public/blog/{}/{}", config.id, page_config.content)).expect("Failed to read content");
+
+//             EntryObj {
+//                 id: page_config.id,
+//                 title: format!("{}: {}", config.title, page_config.subname),
+//                 date: page_config.date.to_string(),
+//                 description: page_config.description.clone(),
+//                 content,
+//             }
+//         })
+//     }).collect()
+// }
+
+// this... is a more boring to solve this, but i can't quite get the blog entries to read in properly on compile time. the wasm seems like it *can't* do this.
+const ENTRIES: [Entry; 3] = [
+    Entry {
         id: 0,
-        title: "First Post",
+        title: "Test",
         date: "2021-09-01",
-        description: "This is the first post",
-        content: "This is the first post",
+        description: "This is a test",
+        content: "This is a test",
     },
-    EntryObj {
+    Entry {
         id: 1,
-        title: "Second Post",
-        date: "2021-09-02",
-        description: "This is the second post",
-        content: "This is the second post",
+        title: "Test",
+        date: "2022-09-01",
+        description: "This is a test",
+        content: "This is a test",
     },
-    EntryObj {
+    Entry {
         id: 2,
-        title: "Third Post",
-        date: "2021-09-03",
-        description: "This is the third post",
-        content: "This is the third post",
+        title: "Test",
+        date: "2023-09-01",
+        description: "This is a test",
+        content: "This is a test",
     },
 ];
 
@@ -99,7 +127,16 @@ pub fn Blog() -> Element {
         div { // background of everything
             class: "absolute flex h-screen w-screen justify-center",
             div { // center text column
-                    class: "container mx-auto max-w-4xl",
+                    class: "container mx-auto p-2 max-w-4xl",
+                
+                TopBar {
+                    children: { vec![ 
+                        rsx! { Link {
+                            to: Route::Home {},
+                            "🏠 Home"
+                        }},
+                    ]}
+                }
 
                 h1 {
                     class: "text-4xl text-left text-rosewater p-4",
@@ -110,8 +147,8 @@ pub fn Blog() -> Element {
 
                 div {
                     class: "flex flex-col p-4",
-                    for &entry in ENTRIES.iter() {
-                        Entry { entry: entry }
+                    for entry in ENTRIES.iter() {
+                        EntryDisp { entry: entry.clone() }
                     }
                 }
 
@@ -122,7 +159,7 @@ pub fn Blog() -> Element {
 }
 
 #[component]
-fn Entry(entry: EntryObj) -> Element {
+fn EntryDisp(entry: Entry) -> Element {
     rsx! {
         Link {
             to: Route::BlogPost { id: entry.id },
@@ -158,26 +195,53 @@ fn Entry(entry: EntryObj) -> Element {
 pub fn BlogPost(id: u32) -> Element {
     let entry = ENTRIES.iter().find(|e| id == e.id).unwrap();
 
-    rsx!{
-        Document {
+    rsx! {
+        Stars {
 
-            div {
-                class: "flex flex-col p-2",
-                h2 {
-                    class: "text-3xl text-left text-rosewater p-1",
-                    {entry.title}
+        }
+        div { // bg
+            class: "absolute flex h-screen w-screen justify-center",
+
+            div { // center text column
+                class: "container mx-auto p-2 max-w-4xl",
+                
+                TopBar {
+                    children: { vec![ 
+                        rsx! { Link {
+                            to: Route::Home {},
+                            "🏠 Home"
+                        }},
+                        rsx! { Link {
+                            to: Route::Blog {},
+                            "🖊️ Blog"
+                        }},
+                    ]}
                 }
 
-                p {
-                    class: "text-left text-overlay0 ",
-                    {entry.date}
+                div {
+                    class: "flex flex-col bg-base rounded-lg p-2",
+
+                    // document content
+
+                    div {
+                        class: "flex flex-col p-2",
+                        h2 {
+                            class: "text-3xl text-left text-rosewater p-1",
+                            {entry.title}
+                        }
+        
+                        p {
+                            class: "text-left text-overlay0 ",
+                            {entry.date}
+                        }
+        
+                        hr {}
+                    }
+        
+                    Markdown {
+                        content: entry.content
+                    }
                 }
-
-                hr {}
-            }
-
-            Markdown {
-                content: entry.content
             }
         }
     }

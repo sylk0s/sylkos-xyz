@@ -2,6 +2,7 @@ use dioxus::prelude::*;
 use crate::{
     Route,
     components::stars::Stars,
+    components::topbar::TopBar,
 };
 use dioxus_router::prelude::*;
 
@@ -15,32 +16,24 @@ pub fn Document(children: ReadOnlySignal<Element>) -> Element {
             class: "absolute flex h-screen w-screen justify-center",
 
             div { // center text column
-                    class: "container mx-auto p-2 max-w-4xl",
-                    
-                    div { // header padding
-                        class: "pb-4",
-                        div { // header bar
-                            class: "flex bg-base rounded-lg p-2",
-                            
-                            // header content
+                class: "container mx-auto p-2 max-w-4xl",
+                
+                TopBar {
+                    children: { vec![ 
+                        rsx! { Link {
+                            to: Route::Home {},
+                            "🏠 Home"
+                        }},
+                    ]}
+                }
 
-                            h1 {
-                                class: "text-xl text-left text-rosewater",
-                                Link {
-                                    to: Route::Home {},
-                                    "⇦ Return Home"
-                                }
-                            }
-                        }
-                    }
+                div {
+                    class: "flex flex-col bg-base rounded-lg p-2",
 
-                    div {
-                        class: "flex flex-col bg-base rounded-lg p-2",
-        
-                        // document content
+                    // document content
 
-                        { children }
-                    }
+                    { children }
+                }
             }
         }
     }

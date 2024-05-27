@@ -4,7 +4,7 @@ use crate::{
     *, 
     components::{
         stars::Stars,
-        transtext::TransText,
+        transtext::{TransText, TransFlagText},
     },
 };
 use serde::{Serialize, Deserialize};
@@ -49,8 +49,8 @@ pub fn Index() -> Element {
                     }
                     h2 {
                         class: "text-md justify-center",
-                        TransText {
-                            text: "they/she".to_string()
+                        TransFlagText {
+                            text: "they / she".to_string()
                         }
                     }
                 }
@@ -112,7 +112,7 @@ pub fn ButtonGrid() -> Element {
                 }
                 Entry {
                     entry: EntryObj {
-                        to: Routable::FromRoute(Route::Tmp {}),
+                        to: Routable::FromStr("https://sylkos.xyz/resume.pdf".to_string()),
                         text: "Resume".to_string(),
                     }
                 
