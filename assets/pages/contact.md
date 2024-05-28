@@ -12,7 +12,7 @@ Signal: Ask on some other platform... If needed, send some encrypted message wit
 
 [School Email](mailto:neu@sylkos.xyz): neu@sylkos.xyz
 
-[Personal Email](mailto:me@sylkos.xyz): me@sylkos.xyz
+[Personal Email](mailto:julia@sylkos.xyz): julia@sylkos.xyz
 
 ## Social Media and Other Links:
 
@@ -30,4 +30,10 @@ Signal: Ask on some other platform... If needed, send some encrypted message wit
 
 ## Keys
 
-TODO: Add some crypto here for things :3
+My public pgp key can be found [here](https://sylkos.xyz/pub_gpg.key).
+
+```
+8C04 FBD3 9030 0C3A E330  6CD9 8984 B68A BBC5 733D
+```
+
+My publig ssh key can be found [here](https://sylkos.xyz/pub_ssh.key).
