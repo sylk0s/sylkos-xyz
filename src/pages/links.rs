@@ -49,7 +49,7 @@ pub fn Links() -> Element {
                 }
 
                 div {
-                    class: "flex flex-row",
+                    class: "flex flex-row py-2",
                     Link {
                         class: "p-1",
                         to: "https://cyber.dabamos.de/88x31/index.html",
@@ -127,6 +127,13 @@ pub fn Links() -> Element {
                 //         }
                 //     }
                 // }
+
+                hr { class: "py-2" }
+
+                p {
+                    class: "text-md m-0 leading-tight",
+                    {include_str!("../../assets/berry.txt")}
+                }
             }
         }
     }
