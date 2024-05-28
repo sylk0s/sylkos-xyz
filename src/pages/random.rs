@@ -29,7 +29,7 @@ pub fn Random() -> Element {
                     br {}
                     Link {
                         to: "https://allalike.org",
-                        TransText { text: "teminalvelocit<3" }
+                        TransText { text: "terminalvelocit<3" }
                     }
                 }
 
@@ -125,19 +125,141 @@ pub fn Random() -> Element {
                     }
                 }
 
-                // div {
-                //     class: "flex flex-row",
-                //     Link {
-                //         class: "p-1",
-                //         to: "https://cyber.dabamos.de/88x31/index.html",
-                //         img {
-                //             class: "rounded-sm",
-                //             src: "img/88x31.gif",
-                //         }
-                //     }
-                // }
+                div {
+                    class: "flex flex-row py-2",
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/amused.png",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/asdf.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/big_eyes.png",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/bzzzt.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/cattt.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/colon3.png",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "neovim.io",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/emoticons.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/genderhuh.png",
+                        }
+                    }
+                }
 
-                
+                div {
+                    class: "flex flex-row py-2",
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/isopods.png",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/nyan.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/possum.png",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://nixos.org",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/sparkl.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/strob.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/tetris.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/tnt.gif",
+                        }
+                    }
+                    Link {
+                        class: "p-1",
+                        to: "https://collection.ju.mp/#",
+                        img {
+                            class: "rounded-sm",
+                            src: "img/yippp.png",
+                        }
+                    }
+                }
             }
         }
     }

@@ -808,11 +808,6 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -862,10 +857,6 @@ video {
 
 .font-bold {
   font-weight: 700;
-}
-
-.leading-none {
-  line-height: 1;
 }
 
 .leading-tight {
