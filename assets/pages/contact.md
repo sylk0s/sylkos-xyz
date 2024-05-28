@@ -4,7 +4,7 @@ Here are some ways to contact me
 
 ## Preferred methods:
 
-Discord: @sylkos (Best for general purpose, most "public")
+[Discord](https://discord.com/users/403610859370446851): @sylkos (Best for general purpose, most "public")
 
 Signal: Ask on some other platform... If needed, send some encrypted message with my public key.
 

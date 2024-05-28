@@ -6,7 +6,7 @@ pub mod components;
 use dioxus::prelude::*;
 use serde::{Serialize, Deserialize};
 
-use pages::{home::*, blog::*, *};
+use pages::{home::*, blog::*, links::*, *};
 #[derive(Routable, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub enum Route {
 	#[route("/")]
@@ -18,11 +18,8 @@ pub enum Route {
     Blog {},
     #[route("/contact")]
     Contact {},
-    // #[route("/links")]
-    // Tmp {},
-
-    #[route("/tmp")]
-    Tmp {},
+    #[route("/links")]
+    Links {},
 
     #[route("/blog/:id")]
     BlogPost { 

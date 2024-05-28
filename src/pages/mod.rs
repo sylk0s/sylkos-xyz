@@ -1,5 +1,6 @@
 pub mod home;
 pub mod blog;
+pub mod links;
 
 use dioxus::prelude::*;
 use crate::components::{

@@ -113,7 +113,7 @@ pub fn ButtonGrid() -> Element {
                 }
                 Entry {
                     entry: EntryObj {
-                        to: Routable::FromRoute(Route::Tmp {}),
+                        to: Routable::FromRoute(Route::Links {}),
                         text: "Links".to_string(),
                     }
                 

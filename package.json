@@ -1,7 +1,4 @@
 {
-  "dependencies": {
-    "@tsparticles/engine": "^3.3.0"
-  },
   "devDependencies": {
     "@catppuccin/tailwindcss": "^0.1.6"
   }
