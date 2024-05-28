@@ -10,7 +10,7 @@ My name is Julia Keadey, but I typically go by the pseudonym `sylkos` (often spe
 ## Education
 
 
-I'm currently a student at **Northeastern University** studying **Computer Science** and **Computer Engineering** with a minor in **Mathematics**, and planning to graduate in 2026. For more info, see my [Resume](https://sylkos.xyz/resume.pdf)
+I'm currently a student at **Northeastern University** studying **Computer Science** and **Computer Engineering** with a minor in **Mathematics**, and planning to graduate in 2026. For more info, see my [resume](https://sylkos.xyz/resume.pdf).
 
 
 ## Interests

@@ -113,8 +113,8 @@ pub fn ButtonGrid() -> Element {
                 }
                 Entry {
                     entry: EntryObj {
-                        to: Routable::FromRoute(Route::Links {}),
-                        text: "Links".to_string(),
+                        to: Routable::FromRoute(Route::Random {}),
+                        text: "Random".to_string(),
                     }
                 
                 }

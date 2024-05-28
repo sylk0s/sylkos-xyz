@@ -5,7 +5,7 @@ use crate::components::{
 };
 
 #[component]
-pub fn Links() -> Element {
+pub fn Random() -> Element {
     rsx! {
         Document {
             div {
@@ -13,7 +13,7 @@ pub fn Links() -> Element {
 
                 h1 {
                     class: "text-4xl p-2",
-                    "Links"
+                    "Random"
                 }
 
                 hr { class: "py-2" }
@@ -24,7 +24,7 @@ pub fn Links() -> Element {
                 }
 
                 p {
-                    class: "text-lg",
+                    class: "text-lg pb-4",
                     "Someday my friends will be cool enough to all have websites >:|"
                     br {}
                     Link {
@@ -32,6 +32,15 @@ pub fn Links() -> Element {
                         TransText { text: "teminalvelocit<3" }
                     }
                 }
+
+                hr { class: "py-2" }
+
+                p {
+                    class: "text-md m-0 leading-tight pb-4",
+                    {include_str!("../../assets/berry.txt")}
+                }
+
+                hr { class: "py-2" }
 
                 // h2 {
                 //     class: "text-2xl",
@@ -128,12 +137,7 @@ pub fn Links() -> Element {
                 //     }
                 // }
 
-                hr { class: "py-2" }
-
-                p {
-                    class: "text-md m-0 leading-tight",
-                    {include_str!("../../assets/berry.txt")}
-                }
+                
             }
         }
     }
