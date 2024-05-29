@@ -30,10 +30,10 @@ Signal: Ask on some other platform... If needed, send some encrypted message wit
 
 ## Keys
 
-My public pgp key can be found [here](https://sylkos.xyz/pub_gpg.key).
+My public pgp key can be found [here](https://sylkos.xyz/sylkos_gpgkey).
 
 ```
 8C04 FBD3 9030 0C3A E330  6CD9 8984 B68A BBC5 733D
 ```
 
-My publig ssh key can be found [here](https://sylkos.xyz/pub_ssh.key).
+My public ssh key can be found [here](https://sylkos.xyz/sylkos_sshkey).

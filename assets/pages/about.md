@@ -28,11 +28,11 @@ In my free time, I like to write a lot of code! The first language I learned was
 ## Linux
 
 
-Picture this: 2021, Covid, 3:00 am. This was when I first installed Arch Linux. After getting fed up with windows when trying to make more complex automation and better hackability, I decided to finally install linux on my main PC after considering for years. I've never gone back... Now I run some flavor of linux on almost every device I own and have been working for years to perfect my setup. For over a year now, I've been switching from arch to NixOS on my main machines, which addressed a few issues I was having (I plan to make this a blog post at some point). I also run a debian server which may be swapping to NixOS sometime in the foreseeable future.
+I first installed Arch Linux after getting fed up with windows back in 2021 when trying automate and customize more. I've never gone back... Now I run some flavor of linux on almost every device I own and have been working for years to perfect my setup. For over a year now, I've been using NixOS on my main machines, which addressed a few issues I was having (I plan to make this a blog post at some point). I also run a debian server which may be swapping to NixOS sometime in the foreseeable future.
 
 
 ## Minecraft
 
 
-I've been a part of the technical minecraft community since around 2020 (wow, so long ago). Currently, I am a member of Quacon, where I do a number of server administration things mostly for our debian box, and play occasionally when I find the time (which seems to be less and less recently :\ ). For the most part, I've focused on developing TNT related technology, such as incredibly precise and increasingly complex cannons. I also helped found the TNT archive, where people can come to learn more about the technology we have created. In the past, I have also been a member of both the Hekate and Melontech servers.
+I've been a part of the technical minecraft community since around 2020 (wow, so long ago). Currently, I am a member of Quacon, where I do a number of server administration things mostly for our debian box, and play occasionally when I find the time (which seems to be less and less recently :\ ). I've focused on developing TNT related technology, mostly incredibly precise and increasingly complex cannons. I also helped found the TNT archive, where people can come to learn more about the technology we have created. In the past, I have also been a member of both the Hekate and Melontech servers.
 
