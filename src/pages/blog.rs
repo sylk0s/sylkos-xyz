@@ -219,12 +219,12 @@ pub fn BlogPost(id: u32) -> Element {
                     div {
                         class: "flex flex-col p-2",
                         h2 {
-                            class: "text-3xl text-left text-rosewater p-1",
+                            class: "text-4xl font-bold text-left text-rosewater p-1",
                             {entry.title}
                         }
         
                         p {
-                            class: "text-left text-overlay0 ",
+                            class: "text-left text-lg text-overlay0 ",
                             {entry.date}
                         }
         

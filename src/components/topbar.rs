@@ -22,7 +22,7 @@ pub fn TopBar(children: Vec<Element>) -> Element {
 fn ButtonEntry(children: Element) -> Element {
     rsx! {
         h1 {
-            class: "text-xl rounded-lg bg-base p-2 text-rosewater",
+            class: "text-md rounded-lg bg-base px-2 text-rosewater text-xl",
             {children}
         }
     }
