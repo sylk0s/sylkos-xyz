@@ -1,32 +1,24 @@
-# Contact Me!
+# Contact Me
 
 Here are some ways to contact me
 
-## Preferred methods:
-
-[Discord](https://discord.com/users/403610859370446851): @sylkos (Best for general purpose, most "public")
+## Preferred methods
 
 Signal: Ask on some other platform... If needed, send some encrypted message with my public key.
 
-[Linkedin](https://www.linkedin.com/in/jkeadey/): Julia Keadey (For any job-related contacts)
+[Discord](https://discord.com/users/403610859370446851): @sylkos (Best for general purpose, most "public")
 
-[School Email](mailto:neu@sylkos.xyz): neu@sylkos.xyz
+[School Email](mailto:neu@sylkos.xyz): <neu@sylkos.xyz>
 
-[Personal Email](mailto:julia@sylkos.xyz): julia@sylkos.xyz
+[Personal Email](mailto:julia@sylkos.xyz): <julia@sylkos.xyz>
 
-## Social Media and Other Links:
+## Social Media and Other Links
 
 [Github](https://github.com/Sylk0s): @sylk0s
 
 [Pronouns](https://en.pronouns.page/@Sylkos): @Sylkos
 
 [Storygraph](https://app.thestorygraph.com/profile/sylkos): @sylkos
-
-## Infrequently Used/Updated:
-
-[Fedi](https://tech.lgbt/@sylkos): @sylkos
-
-[Reddit](https://www.reddit.com/user/sylk0s/): @sylk0s
 
 ## Keys
 

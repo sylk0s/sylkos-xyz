@@ -31,6 +31,10 @@ pub fn Random() -> Element {
                         to: "https://allalike.org",
                         TransText { text: "terminalvelocit<3" }
                     }
+                    Link {
+                        to: "https://adrs.pub/",
+                        TransText { text: "adrs¯\\_(ツ)_/¯" }
+                    }
                 }
 
                 hr { class: "py-2" }
